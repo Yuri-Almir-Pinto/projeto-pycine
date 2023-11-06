@@ -15,6 +15,7 @@
             const text = await res.json();
             return text;
         }
+        console.log("Teste");
         
     }
 
@@ -82,5 +83,5 @@
 	</ul>
 	{/if}
 {:catch error}
-	<p style="color: red">{error.message}</p>
+	<p style="color: red">Email não existe, ou usuário não possui favoritos!</p>
 {/await}
