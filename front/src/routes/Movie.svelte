@@ -1,4 +1,5 @@
 <script>
+	export let email;
 	import { browser } from '$app/environment';
 
 	let promise;
@@ -15,7 +16,7 @@
 	async function favoritarFilme(event) {
 		debugger;
 		const buttonValue = event.currentTarget.value;
-		let res1 = await fetch(`http://localhost:8000/user/getUserByEmail?email=yurialmirp@gmail.com`);
+		let res1 = await fetch(`http://localhost:8000/user/getUserByEmail?email=${email}`);
 		if (res1.status == 200) {
 			let usuario = await res1.json();
 			const data = {

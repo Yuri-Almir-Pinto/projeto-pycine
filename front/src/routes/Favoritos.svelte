@@ -1,7 +1,8 @@
 <script>
+    export let email;
     let promise;
     async function getYuriFavorites() {
-        const res = await fetch(`http://localhost:8000/favorite?email=yurialmirp@gmail.com`);
+        const res = await fetch(`http://localhost:8000/favorite?email=${email}`);
         if (res.status == 200) {
             const text = await res.json();
             return text;
@@ -9,7 +10,7 @@
     }
 
     async function getYuriId() {
-        const res = await fetch(`http://localhost:8000/user/getUserByEmail?email=yurialmirp@gmail.com`);
+        const res = await fetch(`http://localhost:8000/user/getUserByEmail?email=${email}`);
         if (res.status == 200) {
             const text = await res.json();
             return text;

@@ -1,5 +1,6 @@
 <script>
 	let menu = 1;
+	let email = "yurialmirp@gmail.com";
 	import Movie from "./Movie.svelte";
 	import Artista from "./Artist.svelte";
 	import Nav from "./Nav.svelte";
@@ -12,9 +13,9 @@
 
 <div class="card">
 	{#if menu === 1}
-		<Movie/>
+		<Movie bind:email/>
 	{:else if menu === 2}
-		<Favoritos/>
+		<Favoritos bind:email/>
 	{:else if menu === 3}
 		<Artista/>
 	{:else if menu === 4}
