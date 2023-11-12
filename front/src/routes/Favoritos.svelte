@@ -42,7 +42,6 @@
 	}
 
     async function removerFavoritos(event) {
-        debugger;
         const button = event.currentTarget.value;
         let text = await getYuriId();
         let data = {
@@ -59,6 +58,7 @@
         })
 
         document.querySelector(`#favorito${button}`).style.display = "none"
+        alert("Filme desfavoritado.");
     }
 
     function setEvent() {

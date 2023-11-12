@@ -1,8 +1,8 @@
 <script>
     let resposta = "";
+    export let email;
     async function sendForm(e){
         // envia o formulario no formato json
-        debugger;
         let formData = new FormData(e.target);
         let data = Object.fromEntries(formData.entries());
         const res = await fetch('http://localhost:8000/user',{
@@ -14,6 +14,8 @@
         });
         const json = await res.json();
         resposta = JSON.stringify(json);
+        if (confirm("Deseja definir este usuário como principal?"))
+            email = json.email;
     }
     </script>
     

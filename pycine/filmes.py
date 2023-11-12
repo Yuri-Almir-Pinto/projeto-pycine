@@ -60,6 +60,10 @@ def read_all_user(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
 def get_user_by_email(email: str, db: Session = Depends(get_db)):
     return crud.get_user_by_email(db=db, email=email)
 
+@app.get("/user/getUserById", response_model=schemas.User)
+def get_user_by_id(id: int, db: Session = Depends(get_db)):
+    return crud.get_user(db=db, user_id=id)
+
 #endregion
 
 #region ------- CRUD FAVORITOS -------

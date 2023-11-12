@@ -24,7 +24,9 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.User).offset(skip).limit(limit).all()
 
 def del_users(db: Session, id: int = 0):
-    user = get_user(db, id)
+    user = get_user(db=db, user_id=id)
+    if user == None:
+        raise HTTPException(status_code=404, detail="Usuário não existe")
     db.delete(user)
     db.commit()
     return user

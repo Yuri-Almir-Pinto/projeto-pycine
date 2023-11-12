@@ -14,7 +14,6 @@
 	}
 
 	async function favoritarFilme(event) {
-		debugger;
 		const buttonValue = event.currentTarget.value;
 		let res1 = await fetch(`http://localhost:8000/user/getUserByEmail?email=${email}`);
 		if (res1.status == 200) {
