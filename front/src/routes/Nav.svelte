@@ -7,8 +7,10 @@
       <li><a href="/" on:click|preventDefault={() => (menu = 1)}>Filmes</a></li>
       <li><a href="/" on:click|preventDefault={() => (menu = 2)}>Favoritos</a></li>
       <li><a href="/" on:click|preventDefault={() => (menu = 3)}>Artista</a></li>
-      <li><a href="/" on:click|preventDefault={() => (menu = 4)}>Users</a></li>
-      <li><a href="/" on:click|preventDefault={() => (menu = 5)}>Users List</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 4)}>Lista Artistas</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 5)}>Artistas Favoritos</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 6)}>Users</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 7)}>Users List</a></li>
     </ul>
   </div>
   
