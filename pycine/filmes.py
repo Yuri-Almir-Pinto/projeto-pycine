@@ -82,12 +82,39 @@ def delete_favorite_movie(favorite: schemas.FavoriteBase, db: Session = Depends(
 
 #endregion
 
+#region ------- PEOPLE -------
+
+@app.get("/atores/getAtorByName/{name}")
+def getAtorByName(name: str):
+    json = request.getPeopleByName(name=name)
+
+    return json
+
+@app.get("/atores/favorite", response_model=list[schemas.FavoritePeople])
+def get_favorite_people(email: str, db: Session = Depends(get_db)):
+     return crud.get_favorite_people(db=db, email=email)
+
+@app.post("/atores/favorite", response_model=schemas.FavoritePeople)
+def favorite_person(favorite: schemas.FavoritePeopleBase, db: Session = Depends(get_db)):
+     return crud.favorite_person(db=db, idUser=favorite.idUser, idPerson=favorite.idPerson)
+
+@app.delete("/atores/favorite", response_model=schemas.FavoritePeople)
+def delete_favorite_person(favorite: schemas.FavoritePeopleBase, db: Session = Depends(get_db)):
+    return crud.delete_favorite_person(db=db, idUser=favorite.idUser, idPerson=favorite.idPerson)
+
+#endregion
+
 #region ------- COISA NORMAL -------
 
 @app.get("/filmes/getMoviesById")
 def getMovieById(ids: list[int] = Query(None)):
     teste = request.getMovieById(ids)
     return teste
+
+@app.get("/atores/getMultiplePeopleById")
+def getMultiplePeopleById(ids: list[int] = Query(None)):
+    people = request.getMultiplePeopleById(ids)
+    return people
 
 # - endpoint que retorna 5 filmes recomendados da semana (definidos em uma lista no python)
 @app.get("/filmes/top5melhoresSemana")

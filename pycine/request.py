@@ -33,7 +33,7 @@ def getGenresJson():
     return response.json()
 
 def getPeopleJson(name):
-    peopleEndpoint = URL_PEOPLE + "?api_key=" + API_KEY + "&query=" + name
+    peopleEndpoint = URL_PEOPLE + "?api_key=" + API_KEY + "&query=" + name + "&sort_by=vote_count.desc"
     headers = {"accept": "application/json"}
     response = requests.get(peopleEndpoint, headers=headers)
 
@@ -94,7 +94,16 @@ def getMovieByName(name):
 
 # - busca artista pelo nome.
 def getPeopleByName(name):
-    return getPeopleJson(name)['results']
+    pessoas = getPeopleJson(name)['results']
+    retorno = []
+    for pessoa in pessoas:
+        json = {}
+        json['nome'] = pessoa['original_name']
+        json['id'] = pessoa['id']
+        json['imagem'] = f"https://image.tmdb.org/t/p/w185{pessoa['profile_path']}" 
+        retorno.append(json)
+    
+    return retorno
 
 def getTop5TrendingMovies():
     json = getTrendingMoviesJson()['results']
@@ -124,7 +133,8 @@ def getMovieByNameAndSortByPopular(name):
         populares.append({
             'id': filme['id'],
             'nome': filme['original_title'],
-            'popularidade': filme['popularity']
+            'popularidade': filme['popularity'],
+            'imagem': f"https://image.tmdb.org/t/p/w185{filme['poster_path']}"
         })
     
     populares.sort(reverse=True, key=lambda filme:filme['popularidade'])
@@ -167,6 +177,18 @@ def getMovieById(ids):
         movies.append(json)
     return movies
 
+def getMultiplePeopleById(ids):
+    retorno = []
+    for id in ids:
+        pessoa = getPeopleByIdJson(str(id))
+        print(pessoa)
+        json = {}
+        json['nome'] = pessoa['name']
+        json['id'] = pessoa['id']
+        json['imagem'] = f"https://image.tmdb.org/t/p/w185{pessoa['profile_path']}" 
+        retorno.append(json)
+
+    return retorno
 
 
 if __name__ == "__main__":

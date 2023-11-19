@@ -18,3 +18,10 @@ class Favorites(Base):
     id = Column(Integer, primary_key=True, index=True)
     idUser = Column(Integer)
     idMovie = Column(Integer)
+
+class FavoritePeople(Base):
+    __tablename__ = "favoritePeople"
+
+    id = Column(Integer, primary_key=True, index=True)
+    idUser = Column(Integer)
+    idPerson = Column(Integer)

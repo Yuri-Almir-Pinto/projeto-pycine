@@ -74,3 +74,36 @@ def check_if_favorite_exists(db: Session, idUser: int, idMovie: int):
         raise HTTPException(status_code=409, detail="O usuário já possui este filme em seus favoritos.")
 
 #endregion
+
+#region -------------- CRUD PEOPLE --------------
+
+def get_favorite_people(db: Session, email: str):
+    user = get_user_by_email(db, email)
+    return db.query(models.FavoritePeople).filter(models.FavoritePeople.idUser == user.id).all()
+
+def get_favorite_person_with_idPerson(db: Session, idUser: int, idPerson: int):
+    user = get_user(db, idUser)
+    return db.query(models.FavoritePeople).filter(models.FavoritePeople.idUser == user.id, models.FavoritePeople.idPerson == idPerson).first()
+
+def favorite_person(db: Session, idUser: int, idPerson: int):
+    check_if_favorite_person_exists(db=db, idUser=idUser, idPerson=idPerson)
+    user = get_user(db, idUser)
+    db_favorite = models.FavoritePeople(idUser=user.id, idPerson=idPerson)
+    db.add(db_favorite)
+    db.commit()
+    db.refresh(db_favorite)
+    return db_favorite
+
+def delete_favorite_person(db: Session, idUser: int, idPerson: int):
+    favoritePerson = get_favorite_person_with_idPerson(db=db, idUser=idUser, idPerson=idPerson)
+    if favoritePerson == None:
+        raise HTTPException(status_code=404, detail="Ator ou usuário não encontrado nos favoritos.")
+    db.delete(favoritePerson)
+    db.commit()
+    return favoritePerson
+
+def check_if_favorite_person_exists(db: Session, idUser: int, idPerson: int):
+    favoriteExist = get_favorite_person_with_idPerson(db=db, idUser=idUser, idPerson=idPerson)
+    if favoriteExist != None:
+        raise HTTPException(status_code=409, detail="O usuário já possui este ator em seus favoritos.")
+#endregion

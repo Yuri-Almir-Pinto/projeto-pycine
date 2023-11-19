@@ -21,3 +21,10 @@ class FavoriteBase(BaseModel):
 
 class Favorites(FavoriteBase):
     id: int
+
+class FavoritePeopleBase(BaseModel):
+    idPerson: int
+    idUser: int
+
+class FavoritePeople(FavoritePeopleBase):
+    id: int
