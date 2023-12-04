@@ -5,7 +5,6 @@
 	let promise;
 	async function getFilmes() {
 	    // faz um request GET para endpoint /filmes
-		debugger;
 		let pesquisa;
 		if (browser) {
 			const pesquisaButton = document.querySelector('#pesquisa');

@@ -15,7 +15,6 @@
             const text = await res.json();
             return text;
         }
-        console.log("Teste");
         
     }
 

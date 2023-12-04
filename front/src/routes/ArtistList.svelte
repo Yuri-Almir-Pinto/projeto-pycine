@@ -5,7 +5,6 @@
 	let promise;
 	async function getArtistas() {
 	    // faz um request GET para endpoint /filmes
-		debugger;
 		let pesquisa;
 		if (browser) {
 			const pesquisaButton = document.querySelector('#pesquisa');
@@ -35,7 +34,6 @@
 		const buttonValue = event.currentTarget.value;
 		let res1 = await fetch(`http://localhost:8000/user/getUserByEmail?email=${email}`);
 		if (res1.status == 200) {
-			debugger;
 			let usuario = await res1.json();
 			const data = {
 			"idPerson": parseInt(buttonValue),

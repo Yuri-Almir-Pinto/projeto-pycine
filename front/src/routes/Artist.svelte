@@ -5,8 +5,10 @@
         const id = document.getElementById("artista");
 		const res = await fetch("http://localhost:8000/atores/" + id.value);
 		const text = await res.json();
-		if (res.ok) { return text; } 
-    else { throw new Error(text);}
+		if (res.ok)
+			return text;
+    	else 
+			throw new Error();
 	}
 	function handleClickArtista() {
 		artista = getArtista();
@@ -25,6 +27,6 @@
         <img src="https://image.tmdb.org/t/p/w185{artista.profile_path}" alt="Imagem do Artista {artista.name}">
 	{/if}
 {:catch error}
-	<p style="color: red">{error.message}</p>
+<p style="color: red">Por favor, insira o ID de algum artista!</p>
 {/await}
 
