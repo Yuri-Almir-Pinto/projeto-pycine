@@ -98,11 +98,15 @@ def getPeopleByName(name):
     retorno = []
     for pessoa in pessoas:
         json = {}
+        pessoaDetails = getPeopleByIdJson(str(pessoa['id']))
         json['nome'] = pessoa['original_name']
         json['id'] = pessoa['id']
         json['imagem'] = f"https://image.tmdb.org/t/p/w185{pessoa['profile_path']}" 
+        json['popularidade'] = pessoa['popularity']
+        json['nascimento'] = pessoaDetails['birthday']
         retorno.append(json)
     
+    retorno.sort(reverse=True, key=lambda person:person['popularidade'])
     return retorno
 
 def getTop5TrendingMovies():
@@ -181,11 +185,13 @@ def getMultiplePeopleById(ids):
     retorno = []
     for id in ids:
         pessoa = getPeopleByIdJson(str(id))
-        print(pessoa)
+        pessoaTeste = pessoa
         json = {}
         json['nome'] = pessoa['name']
         json['id'] = pessoa['id']
-        json['imagem'] = f"https://image.tmdb.org/t/p/w185{pessoa['profile_path']}" 
+        json['imagem'] = f"https://image.tmdb.org/t/p/w185{pessoa['profile_path']}"
+        json['nascimento'] = pessoa['birthday']
+        json['popularidade'] = pessoa['popularity']
         retorno.append(json)
 
     return retorno

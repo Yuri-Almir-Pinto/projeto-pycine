@@ -78,6 +78,8 @@
 		<li id="favorito{favorito.id}">
 			<img src={favorito.imagem} alt="Imagem de perfil do ator">
 			<p>{favorito.nome} | <button value="{favorito.id}" on:click={removerFavoritos}>- Desfavoritar</button></p>
+            <p>Popularidade: {favorito.popularidade}</p>
+            <p>Data de nascimento: {favorito.nascimento}</p>
 		</li>
 	{/each}
 	</ul>

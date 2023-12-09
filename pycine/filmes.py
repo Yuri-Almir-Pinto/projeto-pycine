@@ -90,6 +90,11 @@ def getAtorByName(name: str):
 
     return json
 
+@app.get("/atores/getMultiplePeopleById")
+def getMultiplePeopleById(ids: list[int] = Query(None)):
+    people = request.getMultiplePeopleById(ids)
+    return people
+
 @app.get("/atores/favorite", response_model=list[schemas.FavoritePeople])
 def get_favorite_people(email: str, db: Session = Depends(get_db)):
      return crud.get_favorite_people(db=db, email=email)
@@ -110,11 +115,6 @@ def delete_favorite_person(favorite: schemas.FavoritePeopleBase, db: Session = D
 def getMovieById(ids: list[int] = Query(None)):
     teste = request.getMovieById(ids)
     return teste
-
-@app.get("/atores/getMultiplePeopleById")
-def getMultiplePeopleById(ids: list[int] = Query(None)):
-    people = request.getMultiplePeopleById(ids)
-    return people
 
 # - endpoint que retorna 5 filmes recomendados da semana (definidos em uma lista no python)
 @app.get("/filmes/top5melhoresSemana")

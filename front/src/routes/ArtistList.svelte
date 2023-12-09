@@ -76,6 +76,8 @@
 		<li>
 			<img src={artista.imagem} alt="Imagem do perfil do artista">
 			<p>{artista.nome} | <button value="{artista.id}" on:click={favoritarArtistas}>+ Favoritar</button></p>
+			<p>Popularidade: {artista.popularidade}</p>
+			<p>Data de nascimento: {artista.nascimento}</p>
 		</li>
 	{/each}
 	</ul>
